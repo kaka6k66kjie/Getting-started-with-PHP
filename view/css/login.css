@@ -1,0 +1,45 @@
+body {
+    background: #f2dfff;
+}
+
+.clear {
+    clear: both;
+}
+
+.login {
+    width: 370px;
+    margin: 130px auto 0px;
+    text-align: center;
+}
+
+input[type="text"] {
+    width: 360px;
+    height: 50px;
+    border: none;
+    background: #fff;
+    border-radius: 10px;
+    margin: 5px auto;
+    padding-left: 10px;
+    color: #745A74;
+    font-size: 15px;
+}
+
+input[type="checkbox"] {
+    float: left;
+    margin: 5px 0px 0px;
+}
+
+span {
+    float: left;
+}
+
+.botton {
+    width: 130px;
+    height: 40px;
+    background: #745A74;
+    border-radius: 10px;
+    text-align: center;
+    color: #fff;
+    margin-top: 30px;
+    line-height: 40px;
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>注册</title>
+    <style type="text/css">
+        body{
+            background: url("../image/bg.png") no-repeat left top;
+            height: 370px;
+            width: 1000px;
+        }
+        .clear {
+            clear: both;
+        }
+        .register {
+            width: 370px;
+            margin: 200px auto 0px;
+            background: #ebcaff;
+            text-align: center;
+            border-radius: 10px;
+        }
+        input[type="text"] {
+            width: 360px;
+            height: 50px;
+            border: none;
+            border-radius: 10px;
+            margin: 5px auto;
+            padding-left: 10px;
+            color: #745A74;
+            font-size: 15px;
+        }
+        input[type="password"] {
+            width: 360px;
+            height: 50px;
+            border: none;
+            border-radius: 10px;
+            margin: 5px auto;
+            padding-left: 10px;
+            color: #745A74;
+            font-size: 15px;
+        }
+        input[type="checkbox"] {
+            float: left;
+            margin: 5px 0px 0px;
+        }
+        span {
+            float: left;
+        }
+        .botton {
+            width: 130px;
+            height: 40px;
+            background: #3f89ec;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            margin-top: 30px;
+            line-height: 40px;
+        }
+    </style>
+</head>
+<body>
+<div class="register">
+    <h2 style="text-align: center"> 用户注册</h2>
+    <form action="/PHPProjects/register.php" method="post">
+        <span>用户名<input type="text" name="username" placeholder="请输入用户名！" value=""/></span>
+        <span>密&nbsp;&nbsp;码<input type="password" name="password" placeholder="请输入密码！" value=""/></span>
+        <input type="submit" class="botton" value="点击注册">
+    <div class="clear"></div>
+</div>
+</body>
+</html>
+</body>
+</html>

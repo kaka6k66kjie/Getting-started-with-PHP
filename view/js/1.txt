@@ -1,0 +1,17 @@
+$("#submitAdd").click(function(){
+  var targetUrl = $("#addForm").attr("action");    
+  var data = $("#addForm").serialize();     
+   $.ajax({ 
+    type:'post',  
+    url:targetUrl, 
+    cache: false,
+    data:data,  //重点必须为一个变量如：data
+    dataType:'json', 
+    success:function(data){      
+      alert('success');
+    },
+    error:function(){ 
+     alert("请求失败")
+    }
+   })
+})

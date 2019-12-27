@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:D="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>PT简易留言本</title>
+    <!--从外部引入-->
+    <link href="./view/css/EasyText.css" rel="stylesheet" type="text/css"/>
+    <link href="./view/css/layer.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="./view/js/jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="./view/js/EasyText.js"></script>
+</head>
+<body>
+<div style="height: 100vh">
+    <div id="Container">
+        <div class="header">
+            <div class="image">
+                <br>
+                <h2 >PT简易留言本</h2>
+                <p>简单的PHP+MYSQL+MVC架构，适用于新手如何快速实战PHP之用</p>
+                <p>学习交流+QQ：2357006254</p>
+            </div>
+        </div>
+        <div class="content">
+            <span style=" height:30px;background: #7aff8d;width: 200px;margin-left:30px;text-align: center;
+            font-size: 18px; border-radius: 3px;text-shadow: 2px 2px 4px #f0b7ff;">
+                <!--根据取到的session的来判断是否进行了登录-->
+                <?php
+                  if($_SESSION['user_id']){
+                  echo '['.$_SESSION['username'].']';
+                  echo '欢迎您';
+                  }else{
+                    echo '您还没有登录！';
+                  }
+                  ?>
+            </span>
+            <?php if(!$_SESSION['user_id']){ ?>
+            <a href="/PHPProjects/view/html/login.html" style="color: white; height:30px;width:70px;
+            background: #5d59ff;font-size: 18px;text-align: center;
+            margin-left: 30px; border-radius: 3px;text-shadow: 2px 2px 4px #999;">点击登录</a>
+            <?php } else{ ?>
+            <a href="/PHPProjects/login.php?action=logout" style="color: white; height:30px;width:70px;
+            background: red;font-size: 18px;text-align: center;
+            margin-left: 30px; border-radius: 3px;text-shadow: 2px 2px 4px #999;">点击注销</a>
+            <?php }?>
+            <div class="leftContent">
+                <?php foreach($data as $value): ?>
+                            <div class="content_border">
+                                <h3><b>主题&nbsp;&nbsp;&nbsp;</b><?=htmlspecialchars($value['Info_title'])?><br>
+                                    <b>作者&nbsp;&nbsp;&nbsp;</b><?=htmlspecialchars($value['user_id'][1])?>
+                                    <em><?=date('Y-m-d  H:i:s',$value['create_time'])?></em>
+                                </h3>
+                                <p><b>内&nbsp;&nbsp;容&nbsp;&nbsp;&nbsp;</b><?=htmlspecialchars($value['content'])?></p>
+                                <?php foreach($value['replay'] as $v): ?>
+                                    <p class="replayDiv">
+                                                <span>用户<
+                                                    <?=htmlspecialchars($v['re_userId'][1])?>
+                                                </span>> 在：
+                                                <br>
+                                                <span>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    &nbsp;&nbsp;<?=date('Y-m-d H:i:s',$v['replay_time'])?>
+                                                    回复说:<?=htmlspecialchars($v['replay'])?><br>
+                                                     <a  style="background: red;margin-left: 570px" class="delReplay"
+                                                         href="/PHPProjects/index.php?action=delReplay&re_id=<?=$v['re_id']?>"
+                                                     onclick="disp_confirm()">删除</a>
+                                                </span>
+                                        <?php endforeach;?>
+                                        <span style="font-size: 14px;color: #0a0a0a">&nbsp</span>
+                                    </p>
+                                <p>
+                                    <!--通过action找到index.php中相应的处理函数，并把相应的id和page传到index.php中-->
+                                    <a  href="/PHPProjects/index.php?action=replay&id=<?=$value['id']?>&page=<?=$page?>"
+                                        class="replay">回复</a>
+                                    <a  href="/PHPProjects/index.php?action=edit&id=<?=$value['id']?>&page=<?=$page?>"
+                                        class="edit">修改</a>
+                                    <a href="/PHPProjects/index.php?action=delete&id=<?=$value['id']?>&page=<?=$page?>"
+                                       class="delete" onclick="disp_confirm()">删除</a>
+                                </p>
+                            </div>
+                <?php endforeach;?>
+                <div class="page-normal">
+                    <div style="text-align: center">
+                        <span>&nbsp 共<?= max(ceil($total/$size),1); ?> 页&nbsp;</span>
+                        <?=page_html('./index.php?page=',$total,$page,$size)?>
+                    </div>
+
+                </div>
+            </div>
+            <div class="rightContent">
+                <form name="myForm" action="/PHPProjects/add.php" method="post" onsubmit="return add()">
+                    <h2 style="font-size: 28px; color:#5f67f4; /*银光效果*/text-shadow: 2px 2px 4px #dcecf4; text-align: center; ">留言板</h2>
+                    <p><input type="text" name="Info_title" id="title" placeholder="请输入留言主题" style="width:310px;height: 35px;margin:20px 0px 0px 10px;border-radius: 3px;"></p><br>
+                    <p><textarea name="Info_content" id="content" onkeyup="a()" placeholder="请输入留言内容" style="width:310px;height: 172px;
+                    margin-left: 10px; border-radius: 3px;" ></textarea></p>
+                    <span id="le" style="color: red"></span><br>
+                    <p><button id="Btn" type="submit" style="margin-left: 10px;margin-bottom: 25px" >提交</button></p>
+                </form>
+                <img src="/PHPProjects/index.php?action=delete&id=58&page=3">
+            </div>
+        </div>
+        <div id="Foot">作者：Aka&nbsp;&nbsp;&nbsp;博客地址：https://www.cnblogs.com/kaka6k66k/&nbsp;&nbsp;&nbsp;QQ:2357006254</div>
+    </div>
+</div>
+</body>
+</html>

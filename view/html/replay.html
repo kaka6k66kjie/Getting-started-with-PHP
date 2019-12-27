@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:D="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>PT简易留言本</title>
+</head>
+<body>
+<div>
+    <div>
+        <div class="replay_Content" style="width: 20%;height: auto;border-radius: 3px;  ">
+            <form method="post" action="./replay.php?id=<?=$id?>&page=<?=$page?>">
+                <h2 style="font-size: 28px; color:#5f67f4; text-align: center">
+                    回复留言
+                </h2>
+                <div style="width: 100%;background: #dcecf4">
+                    <!--<p><input type="text" name="Info_title" id="title" placeholder="请输入留言主题" style="width:350px;-->
+                    <p><textarea name="Replay_content" id="Replay_content" placeholder="<?=htmlspecialchars($replay['replay'])?>" style="width:350px;
+            height: 172px;margin-left: 10px; border-radius: 3px;margin-top: 20px" ></textarea></p>
+                    <p><button id="Btn" type="submit" style=" background: #00a8ee;color: #ffffff;font-size: 18px;height: 40px;
+                     border-radius: 3px;margin-left: 10px;margin-bottom: 10px " >提交</button></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
