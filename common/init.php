@@ -5,7 +5,7 @@
  * Date: 2019/11/7
  * Time: 14:01
  */
-$link = mysqli_connect('localhost','root',null,'work');
+$link = mysqli_connect('localhost','root','123456','work');
 //设置字符集
 if(!$link){
     exit('数据库连接失败'.mysqli_connect_error());
